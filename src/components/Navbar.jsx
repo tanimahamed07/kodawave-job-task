@@ -4,33 +4,35 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const Navbar = () => {
   const { scrollY } = useScroll();
 
-  // ১. উইডথ: শুরুতে ১০০% থেকে কমে ৮৫% হবে (ইমেজ অনুযায়ী ৮৫% বেশি প্রিমিয়াম লাগে)
-  const width = useTransform(scrollY, [0, 100], ["100%", "85%"]);
-  
-  // ২. প্যাডিং: স্লিম লুকের জন্য ২৪ পিক্সেল থেকে ১২ পিক্সেল
-  const py = useTransform(scrollY, [0, 100], ["24px", "10px"]);
-  
+  // ১. উইডথ: শুরুতে ১০০% থেকে কমে ৬০% হবে (ইমেজ ৫ ও ৮ এর মতো লুক পেতে)
+  const width = useTransform(scrollY, [0, 150], ["100%", "50%"]);
+
+  // ২. প্যাডিং: স্ক্রল করলে নেভিবারটি আরও স্লিম হবে
+  const py = useTransform(scrollY, [0, 150], ["20px", "8px"]);
+  const px = useTransform(scrollY, [0, 150], ["40px", "20px"]);
+
   // ৩. ব্যাকগ্রাউন্ড: পিউর ট্রান্সপারেন্ট থেকে গ্লাস-হোয়াইট
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 100)"],
   );
-  
-  // ৪. বর্ডার এবং শ্যাডো: স্ক্রল করলেই দৃশ্যমান হবে
+
+  // ৪. বর্ডার এবং শ্যাডো: স্ক্রল করলেই প্রিমিয়াম বর্ডার দেখা যাবে
   const border = useTransform(
     scrollY,
     [0, 100],
-    ["1px solid rgba(0, 0, 0, 0)", "1px solid rgba(0, 0, 0, 0.05)"]
+    ["1px solid rgba(0, 0, 0, 0)", "1px solid rgba(0, 0, 0, 0.08)"],
   );
   const shadow = useTransform(
     scrollY,
     [0, 100],
-    ["none", "0px 10px 30px rgba(0,0,0,0.03)"]
+    ["none", "0px 15px 35px rgba(0,0,0,0.05)"],
   );
 
-  // ৫. টপ পজিশন: স্ক্রল করলে উপর থেকে একটু গ্যাপ তৈরি করবে
-  const top = useTransform(scrollY, [0, 100], ["0px", "15px"]);
+  // ৫. টপ পজিশন ও স্কেল: স্ক্রল করলে সামান্য ছোট হবে
+  const top = useTransform(scrollY, [0, 150], ["0px", "20px"]);
+  const scale = useTransform(scrollY, [0, 150], [1, 0.95]);
 
   return (
     <motion.header
@@ -40,36 +42,43 @@ const Navbar = () => {
         border,
         boxShadow: shadow,
         top,
+        scale,
         paddingTop: py,
         paddingBottom: py,
+        paddingLeft: px,
+        paddingRight: px,
         x: "-50%",
       }}
-      className="fixed left-1/2 z-[100] backdrop-blur-md rounded-full px-10 flex items-center justify-center pointer-events-auto"
+      className="fixed left-1/2 z-[100] rounded-full flex items-center justify-center pointer-events-auto"
     >
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
+      <nav className="w-6xl flex items-center justify-between gap-4">
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer">
-          <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-            <div className="w-2.5 h-2.5 bg-white rotate-45"></div>
+        <div className="flex items-center gap-2 cursor-pointer flex-shrink-0">
+          <div className="w-7 h-7 bg-black rounded-full flex items-center justify-center">
+            <div className="w-2 h-2 bg-white rotate-45"></div>
           </div>
-          <span className="text-xl font-extrabold tracking-tighter text-[#1D1D1F]">
+          <span className="text-lg font-extrabold tracking-tighter text-[#1D1D1F]">
             Kodawave
           </span>
         </div>
 
-        {/* Links */}
-        <div className="hidden md:flex items-center gap-10 text-[14px] font-semibold text-gray-500">
+        {/* Links: স্ক্রল করলে গ্যাপ কিছুটা কমবে */}
+        <motion.div className="hidden md:flex items-center gap-14 text-[13px] font-semibold text-gray-900">
           {["Services", "About", "Blog", "Contact"].map((link) => (
-            <a key={link} href="#" className="hover:text-black transition-colors">
+            <a
+              key={link}
+              href="#"
+              className="hover:text-black transition-colors whitespace-nowrap"
+            >
               {link}
             </a>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Button */}
-        <button className="bg-[#1D1D1F] text-white px-6 py-2.5 rounded-full text-[13px] font-bold hover:bg-black transition-all active:scale-95 shadow-sm">
+        {/* Button: স্ক্রল করলে প্যাডিং কিছুটা কমবে */}
+        <motion.button className="bg-[#1D1D1F] text-white px-5 py-2 rounded-full text-[12px] font-bold hover:bg-black transition-all active:scale-95 shadow-sm whitespace-nowrap flex-shrink-0">
           Start a project
-        </button>
+        </motion.button>
       </nav>
     </motion.header>
   );

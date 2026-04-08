@@ -1,80 +1,159 @@
-import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Navbar from "../components/Navbar";
+import { motion } from "framer-motion";
 
-const Navbar = () => {
-  const { scrollY } = useScroll();
+const MemoJiAvatar = ({
+  emoji,
+  bgColor,
+  positionClasses,
+  shape = "rounded-2xl",
+  delay = 0,
+}) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.6, delay }}
+    className={`absolute ${positionClasses} flex items-center justify-center pointer-events-none md:pointer-events-auto`}
+  >
+    <div
+      className={`w-14 h-14 md:w-16 md:h-16 ${shape} ${bgColor} flex items-center justify-center shadow-lg transform rotate-12 hover:rotate-0 transition-transform duration-300`}
+    >
+      <span className="text-2xl md:text-3xl">{emoji}</span>
+    </div>
+  </motion.div>
+);
 
-  /** * স্ক্রল অ্যানিমেশন লজিক (০ থেকে ১০০ পিক্সেলের মধ্যে পরিবর্তন হবে)
-   */
-
-  // ১. উইডথ পরিবর্তন: শুরুতে ১০০% থেকে কমে ৮০% হবে
-  const width = useTransform(scrollY, [0, 100], ["100%", "80%"]);
-
-  // ২. হাইট/প্যাডিং পরিবর্তন: শুরুতে বেশি (২৪ পিক্সেল), পরে কমে (১২ পিক্সেল) হবে যা স্লিম লুক দিবে
-  const py = useTransform(scrollY, [0, 100], ["24px", "12px"]);
-
-  // ৩. ব্যাকগ্রাউন্ড: শুরুতে একদম ট্রান্সপারেন্ট, স্ক্রল করলে সাদা (৮০% অপাসিটি)
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.85)"],
-  );
-
-  // ৪. বর্ডার: স্ক্রল করলে হালকা বর্ডার আসবে যা ইমেজে দেখা যাচ্ছে
-  const border = useTransform(
-    scrollY,
-    [0, 100],
-    ["1px solid rgba(0, 0, 0, 0)", "1px solid rgba(0, 0, 0, 0.08)"],
-  );
-
-  // ৫. টপ পজিশন: স্ক্রল করলে উপর থেকে ২০ পিক্সেল নিচে নামবে (Floating look)
-  const top = useTransform(scrollY, [0, 100], ["0px", "20px"]);
+const Home = () => {
+  // লোগোগুলোর লিস্ট
+  const logos = [
+    { name: "Landify", icon: "⬡" },
+    { name: "Flexify", icon: "◈" },
+    { name: "Flowboard", icon: "▲" },
+    { name: "Agentify", icon: "●" },
+    { name: "TodoFusion", icon: "■" },
+    { name: "Identify", icon: "❖" },
+  ];
 
   return (
-    <motion.header
-      style={{
-        width,
-        backgroundColor,
-        border,
-        top,
-        paddingTop: py,
-        paddingBottom: py,
-        x: "-50%", // স্ক্রিন এর মাঝখানে রাখার জন্য
-      }}
-      className="fixed left-1/2 z-50 backdrop-blur-md rounded-full px-12 flex items-center justify-center transition-shadow duration-300"
-    >
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo Section */}
-        <div className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-8 h-8 bg-[#1D1D1F] rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
-            <div className="w-2.5 h-2.5 bg-white rotate-45"></div>
+    <div className="min-h-[200vh] text-[#1D1D1F] font-sans selection:bg-pink-100 overflow-x-hidden">
+      <Navbar />
+      <main className="relative pt-40 pb-32">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+          <div className="absolute top-20 left-1/4 w-72 h-72 bg-purple-100/50 rounded-full blur-[120px]"></div>
+          <div className="absolute top-40 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full blur-[120px]"></div>
+        </div>
+
+        <section className="max-w-4xl mx-auto text-center px-6 relative">
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="inline-flex items-center gap-2 bg-white border border-pink-100 text-pink-500 px-4 py-1.5 rounded-full text-[13px] font-bold shadow-sm mb-8"
+          >
+            <span>🪄</span> Made in Kodawave
+          </motion.div>
+
+          <MemoJiAvatar
+            emoji="👨‍🎨"
+            bgColor="bg-sky-400"
+            positionClasses="top-[-40px] left-[-20px] md:left-[-100px]"
+            delay={0.2}
+          />
+          <MemoJiAvatar
+            emoji="👩‍💻"
+            bgColor="bg-rose-400"
+            positionClasses="top-0 right-[-20px] md:right-[-100px]"
+            delay={0.3}
+          />
+          <MemoJiAvatar
+            emoji="👲"
+            bgColor="bg-amber-400"
+            positionClasses="bottom-0 left-[-30px] md:left-[-120px]"
+            delay={0.4}
+          />
+          <MemoJiAvatar
+            emoji="🕶️"
+            bgColor="bg-cyan-400"
+            positionClasses="bottom-[-60px] right-[-20px] md:right-[-80px]"
+            delay={0.5}
+          />
+
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] leading-[1.1] mb-8"
+          >
+            Grow Your Business in the Digital World
+          </motion.h1>
+
+          <motion.p className="text-lg text-gray-500 mx-auto mb-10 leading-relaxed">
+            Kodawave is your trusted digital partner. We take your business to
+            the peak of success through web development, SEO, digital marketing,
+            and more.
+          </motion.p>
+
+          <div className="flex items-center justify-center gap-5">
+            <button className="bg-white border border-gray-200 px-8 py-3.5 rounded-full text-sm font-bold shadow-sm hover:shadow-md active:scale-95 transition-all">
+              Our work
+            </button>
+            <button className="flex items-center gap-2 text-sm font-bold hover:translate-x-1 transition-transform">
+              Schedule a call <span>→</span>
+            </button>
           </div>
-          <span className="text-xl font-extrabold tracking-tighter text-[#1D1D1F]">
-            Kodawave
-          </span>
-        </div>
+        </section>
 
-        {/* Menu Links */}
-        <div className="hidden md:flex items-center gap-10 text-[14px] font-semibold text-gray-500">
-          {["Services", "About", "Blog", "Contact"].map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="hover:text-black transition-colors relative group"
+        {/* --- Framer Motion Marquee Section --- */}
+        <section className="mt-40 overflow-hidden">
+          <p className="text-center text-[14px] text-gray-700 mb-10 tracking-wide uppercase px-6">
+            Trusted by 800K+ freelancers and 20K+ teams like
+          </p>
+
+          {/* এখানে আমি শুধুমাত্র '[mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]' ক্লাসটি যোগ করেছি */}
+          <div className="relative flex overflow-hidden max-w-6xl mx-auto [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
+            {/* মেইন মোশন ডিভ - ২ বার লুপ করা হয়েছে যাতে গ্যাপ না থাকে */}
+            <motion.div
+              animate={{ x: ["0%", "-100%"] }}
+              transition={{
+                duration: 20, // স্পিড কন্ট্রোল করতে পারবেন
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              className="flex flex-nowrap gap-20 items-center grayscale pr-20"
             >
-              {link}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
-            </a>
-          ))}
-        </div>
+              {[...logos, ...logos].map((logo, index) => (
+                <LogoItem key={index} name={logo.name} icon={logo.icon} />
+              ))}
+            </motion.div>
 
-        {/* Action Button */}
-        <button className="bg-[#1D1D1F] text-white px-6 py-2 rounded-full text-[13px] font-bold hover:bg-black hover:shadow-lg transition-all active:scale-95">
-          Start a project
-        </button>
-      </nav>
-    </motion.header>
+            {/* ডুপ্লিকেট কন্টেন্ট যাতে লুপ স্মুথ হয় */}
+            <motion.div
+              animate={{ x: ["0%", "-100%"] }}
+              transition={{
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              className="flex flex-nowrap gap-20 items-center opacity-40 grayscale pr-20"
+            >
+              {[...logos, ...logos].map((logo, index) => (
+                <LogoItem
+                  key={index + logos.length}
+                  name={logo.name}
+                  icon={logo.icon}
+                />
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </main>
+    </div>
   );
 };
 
-export default Navbar;
+const LogoItem = ({ name, icon }) => (
+  <div className="flex items-center gap-2 text-xl font-bold text-gray-800 whitespace-nowrap">
+    <span>{icon}</span>
+    <span className="tracking-tighter">{name}</span>
+  </div>
+);
+
+export default Home;
