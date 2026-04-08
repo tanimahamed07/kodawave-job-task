@@ -227,3 +227,131 @@ export const allBlogPosts = [
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
   },
 ];
+
+// Testimonials for Home Page (Success Stories)
+export const homeTestimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "CEO, TechStart Inc",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    text: "Kodawave transformed our online presence completely. Our website traffic increased by 300% in just 3 months, and our conversion rates doubled. Their SEO expertise is unmatched!",
+    rating: 5,
+  },
+  {
+    name: "Michael Chen",
+    role: "Founder, GrowthLabs",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    text: "The React application they built for us is lightning fast and incredibly user-friendly. Our customers love it, and we've seen a 45% increase in user engagement since launch.",
+    rating: 5,
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Marketing Director, BrandCo",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    text: "Their Google Ads campaigns delivered exceptional ROI. We achieved a 5x return on ad spend within the first quarter. Highly recommend their advertising services!",
+    rating: 5,
+  },
+  {
+    name: "Alex Rivera",
+    role: "Founder, TechFlow",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
+    text: "Kodawave transformed our outdated site into a lead machine. Sales increased by 40% after the new site launch.",
+    rating: 5,
+  },
+  {
+    name: "Emma Wilson",
+    role: "Store Owner, ShopHub",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    text: "The ROI from their SEO strategies is absolutely incredible. Our organic traffic tripled in just 4 months!",
+    rating: 5,
+  },
+  {
+    name: "David Chen",
+    role: "Product Manager, InnovateCo",
+    image: "https://randomuser.me/api/portraits/men/41.jpg",
+    text: "Technical precision combined with creative strategy. Best decision we made for our digital presence this year.",
+    rating: 5,
+  },
+];
+
+// Testimonials for About Page (Company/Team focused)
+export const aboutTestimonials = [
+  {
+    name: "David Park",
+    role: "CTO, InnovateTech",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    text: "Working with Kodawave feels like having an extension of our own team. Their collaborative approach and technical expertise make them stand out from other agencies.",
+    rating: 5,
+  },
+  {
+    name: "Lisa Anderson",
+    role: "Product Manager, CloudSoft",
+    image: "https://randomuser.me/api/portraits/women/52.jpg",
+    text: "What impressed me most is their commitment to understanding our business goals. They don't just deliver code—they deliver solutions that drive real business value.",
+    rating: 5,
+  },
+  {
+    name: "James Wilson",
+    role: "VP of Operations, ScaleUp",
+    image: "https://randomuser.me/api/portraits/men/58.jpg",
+    text: "The team's professionalism and attention to detail are exceptional. They consistently deliver on time and exceed expectations. A true partner in our digital journey.",
+    rating: 5,
+  },
+  {
+    name: "Sofia Martinez",
+    role: "Creative Director, DesignHub",
+    image: "https://randomuser.me/api/portraits/women/33.jpg",
+    text: "Their creative vision combined with technical excellence is rare. They truly understand what it takes to build a successful digital product.",
+    rating: 5,
+  },
+  {
+    name: "Robert Kim",
+    role: "CEO, StartupX",
+    image: "https://randomuser.me/api/portraits/men/67.jpg",
+    text: "Kodawave helped us scale from idea to market leader. Their strategic guidance was invaluable throughout our growth journey.",
+    rating: 5,
+  },
+  {
+    name: "Jennifer Lee",
+    role: "Marketing Head, BrandWorks",
+    image: "https://randomuser.me/api/portraits/women/29.jpg",
+    text: "Pixel perfect execution and lightning fast performance. They set the bar high for what a digital agency should be.",
+    rating: 5,
+  },
+];
+
+// About page values
+export const aboutValues = [
+  {
+    icon: "Target",
+    title: "Our Vision",
+    desc: "To empower businesses with cutting-edge digital solutions that drive measurable growth and lasting success.",
+    color: "text-blue-500",
+  },
+  {
+    icon: "Users",
+    title: "Our Team",
+    desc: "A diverse group of designers, developers, and strategists passionate about creating exceptional digital experiences.",
+    color: "text-purple-500",
+  },
+  {
+    icon: "Award",
+    title: "Our Expertise",
+    desc: "Specialized in React, Next.js, SEO optimization, and performance-driven advertising campaigns.",
+    color: "text-pink-500",
+  },
+  {
+    icon: "TrendingUp",
+    title: "Our Approach",
+    desc: "Data-driven strategies combined with creative excellence to deliver results that exceed expectations.",
+    color: "text-orange-500",
+  },
+];
+
+// About page stats
+export const aboutStats = [
+  { label: "Projects Completed", value: 500, suffix: "+" },
+  { label: "Happy Clients", value: 200, suffix: "+" },
+  { label: "Team Members", value: 25, suffix: "+" },
+  { label: "Years Experience", value: 10, suffix: "+" },
+];

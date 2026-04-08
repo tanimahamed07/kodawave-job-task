@@ -4,10 +4,7 @@ import Testimonials from "../components/home/Testimonials";
 import Services from "../components/home/Services";
 import CTA from "../components/home/CTA";
 import Hero from "../components/home/Hero";
-import ServicesSection from "../components/home/ServicesSection";
-import AboutSection from "../components/home/AboutSection";
-import BlogSection from "../components/home/BlogSection";
-import ContactSection from "../components/home/ContactSection";
+import { homeTestimonials } from "../constants/data";
 
 const Home = () => {
   return (
@@ -21,14 +18,14 @@ const Home = () => {
         <Services />
         <WhyChoseUs />
         <Marquee />
-        <Testimonials />
+        <Testimonials
+          testimonials={homeTestimonials}
+          badge="Success Stories"
+          title="Real results from real clients."
+          description="See how we've helped businesses achieve their digital goals and drive measurable growth."
+        />
         <CTA />
       </main>
-
-      <ServicesSection />
-      <AboutSection />
-      <BlogSection />
-      <ContactSection />
     </div>
   );
 };

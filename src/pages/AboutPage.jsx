@@ -1,37 +1,44 @@
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { Target, Users, Award, TrendingUp } from "lucide-react";
+import { useEffect, useRef } from "react";
 import CTA from "../components/home/CTA";
 import Testimonials from "../components/home/Testimonials";
+import { aboutTestimonials, aboutValues, aboutStats } from "../constants/data";
 
-const stats = [
-  { label: "Projects Completed", value: "500+" },
-  { label: "Happy Clients", value: "200+" },
-  { label: "Team Members", value: "25+" },
-  { label: "Years Experience", value: "10+" },
-];
+// Animated Counter Component
+const AnimatedCounter = ({ value, suffix = "" }) => {
+  const ref = useRef(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 50,
+    stiffness: 100,
+  });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-const values = [
-  {
-    icon: <Target className="text-blue-500" size={32} />,
-    title: "Our Vision",
-    desc: "To empower businesses with cutting-edge digital solutions that drive measurable growth and lasting success.",
-  },
-  {
-    icon: <Users className="text-purple-500" size={32} />,
-    title: "Our Team",
-    desc: "A diverse group of designers, developers, and strategists passionate about creating exceptional digital experiences.",
-  },
-  {
-    icon: <Award className="text-pink-500" size={32} />,
-    title: "Our Expertise",
-    desc: "Specialized in React, Next.js, SEO optimization, and performance-driven advertising campaigns.",
-  },
-  {
-    icon: <TrendingUp className="text-orange-500" size={32} />,
-    title: "Our Approach",
-    desc: "Data-driven strategies combined with creative excellence to deliver results that exceed expectations.",
-  },
-];
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [motionValue, isInView, value]);
+
+  useEffect(() => {
+    springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = Math.floor(latest) + suffix;
+      }
+    });
+  }, [springValue, suffix]);
+
+  return <span ref={ref}>0{suffix}</span>;
+};
+
+// Icon mapping
+const iconMap = {
+  Target: Target,
+  Users: Users,
+  Award: Award,
+  TrendingUp: TrendingUp,
+};
 
 const AboutPage = () => {
   return (
@@ -39,7 +46,6 @@ const AboutPage = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6 text-center">
         <div className="max-w-4xl mx-auto relative">
-          {/* Purple gradient background effect */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-200/30 rounded-full blur-[100px]"></div>
           </div>
@@ -92,7 +98,7 @@ const AboutPage = () => {
       {/* Stats Section */}
       <section className="py-16 px-6 bg-gray-50/50">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
+          {aboutStats.map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -102,7 +108,7 @@ const AboutPage = () => {
               className="text-center"
             >
               <h3 className="text-4xl md:text-5xl font-bold text-pink-500 mb-2">
-                {stat.value}
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </h3>
               <p className="text-gray-600 text-sm">{stat.label}</p>
             </motion.div>
@@ -127,29 +133,39 @@ const AboutPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex gap-6 p-8 bg-white rounded-[32px] shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-              >
-                <div className="p-4 bg-gray-50 rounded-2xl h-fit">
-                  {value.icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-gray-500 leading-relaxed">{value.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+            {aboutValues.map((value, i) => {
+              const IconComponent = iconMap[value.icon];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="flex gap-6 p-8 bg-white rounded-[32px] shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <div className="p-4 bg-gray-50 rounded-2xl h-fit">
+                    <IconComponent className={value.color} size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-3">{value.title}</h3>
+                    <p className="text-gray-500 leading-relaxed">
+                      {value.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <Testimonials />
+      <Testimonials
+        testimonials={aboutTestimonials}
+        badge="Client Testimonials"
+        title="What our partners say about us."
+        description="Hear from the teams who trust us to deliver exceptional digital solutions and drive their business forward."
+      />
 
       {/* CTA */}
       <CTA />
