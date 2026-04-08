@@ -7,6 +7,11 @@
     dark;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* ২. থিম কনফিগারেশন */
 @plugin "daisyui/theme" {
   name: "light";
@@ -45,13 +50,12 @@ body {
         45deg,
         transparent,
         transparent 3px,
-        oklch(60.682% 0.15817 353.778 / 0.10) 3px,
+        oklch(60.682% 0.15817 353.778 / 0.1) 3px,
         /* ০.০৩ থেকে বাড়িয়ে ০.০৬ করা হয়েছে */
-        oklch(60.682% 0.15817 353.778 / 0.10) 4.2px
+        oklch(60.682% 0.15817 353.778 / 0.1) 4.2px
           /* লাইনের ভিজিবিলিটি এখন অনেক ক্লিয়ার হবে */
       );
 
   background-attachment: fixed;
   background-color: #ffffff;
 }
-

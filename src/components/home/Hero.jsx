@@ -25,6 +25,11 @@ const MemoJiAvatar = ({
 const Hero = () => {
   return (
     <section className="max-w-4xl mx-auto text-center px-6 relative">
+      {/* Purple gradient background effect */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-200/30 rounded-full blur-[100px]"></div>
+      </div>
+
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

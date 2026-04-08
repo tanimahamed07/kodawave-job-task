@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
+import SectionHeader from "../shared/SectionHeader";
 
 // Swiper styles
 import "swiper/css";
@@ -61,37 +62,11 @@ const Testimonials = () => {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-4"
-          >
-            <span className="text-pink-500 font-bold text-sm uppercase tracking-widest">
-              Success Stories
-            </span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold tracking-tight text-gray-950 mt-3 mb-4"
-          >
-            Trusted by the best teams.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed"
-          >
-            We take pride in delivering excellence. See what our global clients
-            have to say about their journey with Kodawave.
-          </motion.p>
-        </div>
+        <SectionHeader
+          badge="Success Stories"
+          title="Trusted by the best teams."
+          description="We take pride in delivering excellence. See what our global clients have to say about their journey with Kodawave."
+        />
 
         {/* --- Swiper Carousel --- */}
         <motion.div

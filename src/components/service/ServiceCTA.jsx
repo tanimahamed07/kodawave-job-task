@@ -1,4 +1,4 @@
-const CTA = () => {
+const ServiceCTA = () => {
   return (
     <section className="py-24 relative overflow-hidden">
       <div
@@ -25,36 +25,36 @@ const CTA = () => {
           {/* Badge */}
           <div className="flex justify-center mb-7">
             <div className="inline-flex items-center gap-2 bg-white border border-pink-100 text-pink-500 px-4 py-1.5 rounded-full text-[13px] font-bold shadow-sm">
-              <span>✨</span> Get Started Today
+              <span>🚀</span> Start Your Project
             </div>
           </div>
 
           {/* Heading */}
           <h2 className="text-4xl md:text-[52px] font-bold tracking-tighter text-gray-950 text-center leading-[1.08] mb-5">
-            Ready to grow <br className="hidden md:block" />
+            Ready to transform <br className="hidden md:block" />
             <span className="bg-linear-to-r from-gray-900 via-pink-500 to-gray-900 bg-clip-text text-transparent">
-              your business?
+              your digital presence?
             </span>
           </h2>
 
           {/* Description */}
           <p className="text-gray-500 max-w-2xl mx-auto text-lg md:text-[17px] text-center leading-relaxed mb-11">
-            Let's discuss how we can help you achieve your digital goals. Get a
-            free consultation and discover the perfect solution for your
-            business needs.
+            Choose the perfect package for your business needs or contact us for
+            a custom solution. Our team is ready to help you achieve your
+            digital goals with expert guidance and proven strategies.
           </p>
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button className="bg-gray-950 hover:bg-black text-white px-10 py-[14px] rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2 group">
-              Get Free Consultation
+              Schedule a Consultation
               <span className="group-hover:rotate-45 transition-transform">
                 →
               </span>
             </button>
 
             <button className="text-gray-700 hover:text-gray-900 font-semibold text-sm flex items-center gap-3 group px-6 py-[14px] transition-colors">
-              View Our Work
+              Contact Us
               <svg
                 className="w-5 h-5 transition-transform group-hover:translate-x-1"
                 fill="none"
@@ -79,4 +79,4 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default ServiceCTA;

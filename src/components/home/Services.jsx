@@ -20,7 +20,6 @@ const servicesData = [
   },
 ];
 
-
 const ServiceCard = ({ icon, title, desc }) => (
   <motion.div
     whileHover={{ y: -10 }}
@@ -54,8 +53,8 @@ const Services = () => {
             Services we offer
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            We guide you throughout the entire process. From creative design
-            to technical solutions, our services define industry excellence.
+            We guide you throughout the entire process. From creative design to
+            technical solutions, our services define industry excellence.
           </p>
         </div>
 

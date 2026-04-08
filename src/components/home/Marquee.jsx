@@ -18,21 +18,26 @@ const Marquee = () => {
     { name: "Identify", icon: "❖" },
   ];
 
+  const Row = () => (
+    <motion.div
+      animate={{ x: ["0%", "-100%"] }}
+      transition={{ duration: 16, ease: "linear", repeat: Infinity }}
+      className="flex flex-nowrap gap-20 items-center grayscale pr-20 shrink-0"
+    >
+      {logos.map((logo, index) => (
+        <LogoItem key={index} name={logo.name} icon={logo.icon} />
+      ))}
+    </motion.div>
+  );
+
   return (
     <section className="py-20 overflow-hidden">
       <p className="text-center text-[14px] text-gray-700 mb-10 tracking-wide uppercase px-6">
         Trusted by 800K+ freelancers and 20K+ teams like
       </p>
       <div className="relative flex overflow-hidden max-w-6xl mx-auto [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
-        <motion.div
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-          className="flex flex-nowrap gap-20 items-center grayscale pr-20"
-        >
-          {[...logos, ...logos].map((logo, index) => (
-            <LogoItem key={index} name={logo.name} icon={logo.icon} />
-          ))}
-        </motion.div>
+        <Row />
+        <Row />
       </div>
     </section>
   );
